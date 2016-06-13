@@ -51,16 +51,12 @@ class MainHandler(BaseHandler, FullContactOAuth2Mixin):
     @authenticated
     @gen.coroutine
     def get(self):
-        try:
-            res = yield self.fetch_oauth2(
-                'http://cabapi.elb.fullcontact.com/v3/contacts.scroll',
-                body={"abId": "4ee6f0da4dbd6c675c8f859d53b7ae0137dad808"},
-                access_token=self.current_user['access_token']
-            )
-        except AuthError:
-            self.redirect("/login")
-            return
-        self.render('contacts.html', contacts=map(contact_header, res["contacts"]))
+        all_abs = (yield self.fetch_oauth2('http://cabapi.elb.fullcontact.com/v3/abs.get',
+                                           body={}))["abs"]
+        uab = next(ab for ab in all_abs if ab["type"] == "uab")
+        contacts = (yield self.fetch_oauth2('http://cabapi.elb.fullcontact.com/v3/contacts.scroll',
+                                            body={"abId": uab["abId"]}))["contacts"]
+        self.render('contacts.html', contacts=map(contact_header, contacts))
 
 class LoginHandler(BaseHandler, FullContactOAuth2Mixin):
     @gen.coroutine
