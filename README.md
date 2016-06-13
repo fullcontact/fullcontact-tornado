@@ -25,7 +25,7 @@ See the [example app](/example). To run it, you must first :
   fullcontact_client_secret = '...'
   ```
 
-3. Run the program and go to http://localhost:8080 in yourbrowser:
+3. Run the program and go to [http://localhost:8080](http://localhost:8080) in your browser:
 
   ```
   python main.py
