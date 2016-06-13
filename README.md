@@ -21,13 +21,13 @@ See the [example app](/example). To run it, you must first :
 
 2) Copy the "Client ID" and "Client Secret" to a new file example/config.py:
 
-    ```python
-    fullcontact_client_id = '...'
-    fullcontact_client_secret = '...'
-    ```
+  ```python
+  fullcontact_client_id = '...'
+  fullcontact_client_secret = '...'
+  ```
 
 3) Run the program and go to http://localhost:8080 in yourbrowser:
 
-    ```
-    python main.py
-    ```
+  ```
+  python main.py
+  ```
