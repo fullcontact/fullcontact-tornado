@@ -42,11 +42,12 @@ class FullContactOAuth2Mixin(OAuth2Mixin):
     @_auth_return_future
     def fetch_oauth2(self, url, method="POST", access_token=None, headers=None, body=None, callback=None, **kwargs):
         all_headers = {}
+        access_token = access_token or self.current_user['access_token']
         if access_token:
            all_headers["Authorization"] = "Bearer %s" % access_token
         if headers:
             all_headers.update(headers)
-        if body:
+        if body != None:
             body = escape.json_encode(body)
         callback = functools.partial(self._on_oauth2_request, callback)
         http = self.get_auth_http_client()
