@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title>FullContact CAP API Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: arial;
+        font-size: 12px;
+      }
+
+      body {
+        background-color: #eee;
+      }
+
+      .contact {
+        float: left;
+        width: 200px;
+        height: 260px;
+        background-color: #fff;
+        border: 1px solid #bbb;
+        border-radius: 3px;
+        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
+        margin: 10px 10px;
+        overflow: hidden;
+      }
+
+      .avatar {
+        width: 200px;
+        height: 200px;
+        background-size: cover;
+        background-color: #f0f0f0;
+      }
+
+      .name, .job, .email {
+        text-align: center;
+        white-space: nowrap;
+        margin: 3px 5px;
+      }
+
+      .name {
+        font-weight: bold;
+      }
+
+      .email {
+        color: #aaa;
+      }
+    </style>
+  </head>
+  <body style="">
+    {% for contact in contacts %}
+      <div class="contact">
+        <div class="avatar" style="{% if contact["photo"] %}background-image: url('{{ contact["photo"] }}'){% end %}"></div>
+        {% if contact["name"] %}<div class="name">{{ contact["name"] }}</div>{% end %}
+        {% if contact["job"] %}<div class="job">{{ contact["job"] }}</div>{% end %}
+        {% if contact["email"] %}<div class="email">{{ contact["email"] }}</div>{% end %}
+      </div>
+      </tr>
+    {% end %}
+  </body>
+</html>
