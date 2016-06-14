@@ -1,11 +1,12 @@
-#import urllib as urllib_parse
 import functools
 
 from tornado.auth import OAuth2Mixin, _auth_return_future, AuthError, urllib_parse
 from tornado import escape
 
-class FullContactOAuth2Mixin(OAuth2Mixin):
+
+class Oauth2Client(OAuth2Mixin):
     """FullContact authentication using OAuth2.
+
     In order to use, register your application with FullContact and copy the
     relevant parameters to your application settings.
     * Go to the https://alpha.fullcontact.com/apps
@@ -14,6 +15,7 @@ class FullContactOAuth2Mixin(OAuth2Mixin):
     * Copy the "Client ID" and "Client Secret" to the application settings as
       {"fullcontact_client_id": CLIENT_ID, "fullcontact_client_secret": CLIENT_SECRET}}
     """
+
     _OAUTH_AUTHORIZE_URL = "https://alpha.fullcontact.com/oauth/authorize"
     _OAUTH_ACCESS_TOKEN_URL = "https://api.fullcontact.com/v3/oauth.exchangeAuthCode"
     _OAUTH_NO_CALLBACKS = False
@@ -38,20 +40,6 @@ class FullContactOAuth2Mixin(OAuth2Mixin):
             return
         args = escape.json_decode(response.body)
         future.set_result(args)
-
-    @_auth_return_future
-    def fetch_oauth2(self, url, method="POST", access_token=None, headers=None, body=None, callback=None, **kwargs):
-        all_headers = {}
-        access_token = access_token or self.current_user['access_token']
-        if access_token:
-           all_headers["Authorization"] = "Bearer %s" % access_token
-        if headers:
-            all_headers.update(headers)
-        if body != None:
-            body = escape.json_encode(body)
-        callback = functools.partial(self._on_oauth2_request, callback)
-        http = self.get_auth_http_client()
-        http.fetch(url, headers=all_headers, method=method, body=body, callback=callback, **kwargs)
 
     def _on_oauth2_request(self, future, response):
         if response.error:

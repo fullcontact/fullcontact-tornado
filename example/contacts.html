@@ -1,60 +1,81 @@
 <html>
   <head>
-    <title>FullContact CAP API Demo</title>
+    <title>Oy</title>
     <style>
       * {
         box-sizing: border-box;
         font-family: arial;
-        font-size: 12px;
+        color: white;
       }
 
       body {
-        background-color: #eee;
+        width: 700px;
+        margin: 20px auto;
+        background-color: #9b59b6; }
+
+      a { text-decoration: none; }
+
+      h1 {
+        margin-top: 100px;
+        font-size: 4em;
+        text-align: center;
+        color: white;
+      }
+
+      #login {
+        font-weight: bold;
+        text-align: center;
+      }
+
+      #login a {
+        color: white;
+        padding: 10px;
+        background-color: #813a9d;
+        border-radius: 3px;
       }
 
       .contact {
         float: left;
-        width: 200px;
-        height: 260px;
-        background-color: #fff;
-        border: 1px solid #bbb;
+        width: 100px;
+        height: 160px;
         border-radius: 3px;
-        box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.2);
         margin: 10px 10px;
         overflow: hidden;
       }
 
       .avatar {
-        width: 200px;
-        height: 200px;
+        width: 100px;
+        height: 100px;
         background-size: cover;
-        background-color: #f0f0f0;
+        box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 50px;
       }
 
-      .name, .job, .email {
+      .name, .email {
         text-align: center;
         white-space: nowrap;
         margin: 3px 5px;
       }
 
-      .name {
-        font-weight: bold;
-      }
-
-      .email {
-        color: #aaa;
-      }
     </style>
   </head>
   <body style="">
-    {% for contact in contacts %}
-      <div class="contact">
-        <div class="avatar" style="{% if contact["photo"] %}background-image: url('{{ contact["photo"] }}'){% end %}"></div>
-        {% if contact["name"] %}<div class="name">{{ contact["name"] }}</div>{% end %}
-        {% if contact["job"] %}<div class="job">{{ contact["job"] }}</div>{% end %}
-        {% if contact["email"] %}<div class="email">{{ contact["email"] }}</div>{% end %}
+    {% if anon %}
+      <div id="login">
+        <h1>Oy</h1>
+        <a href="{{ reverse_url("login") }}">Log in With FullContact</a>
       </div>
-      </tr>
+    {% else %}
+      <div id="header">
+        <h1>Oy</h1>
+        <a href=" {{ reverse_url("logout") }}">Logout</a>
+      </div>
+      {% for contact in contacts %}
+        <a class="contact" href="mailto:{{ contact["email"] }}?subject=Oy&body=Oy%0A%0A---%0ASent with Oy app">
+          <div class="avatar" style="{% if contact["photo"] %}background-image: url('{{ contact["photo"] }}'){% end %}"></div>
+          {% if contact["name"] %}<div class="name">{{ contact["name"] }}</div>{% end %}
+        </a>
+      {% end %}
     {% end %}
   </body>
 </html>
