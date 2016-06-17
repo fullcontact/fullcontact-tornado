@@ -5,6 +5,7 @@ from tornado import escape
 
 
 class Oauth2Client(OAuth2Mixin):
+
     """FullContact authentication using OAuth2.
 
     In order to use, register your application with FullContact and copy the
