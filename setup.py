@@ -15,11 +15,11 @@ setup(
     version=get_version('short'),
     author="Kaspars Dancis",
     author_email="kaspars@fullcontact.com",
-    description="A rainmaker client",
+    description="A Cab api client",
     long_description=readme,
     platforms=[ 'any' ],
     license="Eclipse Public License",
-    url="https://github.com/fullcontact/fullcontact-api-tornado",
+    url="https://github.com/fullcontact/fullcontact-tornado",
     packages=find_packages(),
     install_requires=install_requires,
 )
