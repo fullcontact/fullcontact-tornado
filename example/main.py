@@ -14,8 +14,8 @@ To run this app, you must first register an application with FullContact:
 
 import logging
 
-from fullcontact.tornado.oauth2 import Oauth2Client
-from fullcontact.tornado.client import CabApiClient
+import fullcontact.tornado.client as client
+import fullcontact.tornado.oauth2 as oauth2
 from tornado.escape import json_decode, json_encode
 from tornado.ioloop import IOLoop
 from tornado import gen
@@ -31,7 +31,7 @@ define("fullcontact_client_secret", type=str, group="application")
 define("cookie_secret", type=str, group="application", default="REPLACE_THIS", help="signing key for secure cookies")
 
 
-class BaseHandler(RequestHandler, Oauth2Client, CabApiClient):
+class BaseHandler(RequestHandler, oauth2.Oauth2Client, client.CabApiClient):
 
     COOKIE_NAME = "fullcontact_demo"
 

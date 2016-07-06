@@ -20,6 +20,6 @@ setup(
     platforms=[ 'any' ],
     license="Eclipse Public License",
     url="https://github.com/fullcontact/fullcontact-tornado",
-    packages=find_packages(),
+    packages=["fullcontact"],
     install_requires=install_requires,
 )
