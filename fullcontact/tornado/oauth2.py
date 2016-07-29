@@ -10,14 +10,14 @@ class Oauth2Client(OAuth2Mixin):
 
     In order to use, register your application with FullContact and copy the
     relevant parameters to your application settings.
-    * Go to the https://alpha.fullcontact.com/apps
+    * Go to the https://beta.fullcontact.com/apps
     * Create a new application
     * Set the Redirect URI to point to your auth handler
     * Copy the "Client ID" and "Client Secret" to the application settings as
       {"fullcontact_client_id": CLIENT_ID, "fullcontact_client_secret": CLIENT_SECRET}}
     """
 
-    _OAUTH_AUTHORIZE_URL = "https://alpha.fullcontact.com/oauth/authorize"
+    _OAUTH_AUTHORIZE_URL = "https://beta.fullcontact.com/oauth/authorize"
     _OAUTH_ACCESS_TOKEN_URL = "https://api.fullcontact.com/v3/oauth.exchangeAuthCode"
     _OAUTH_NO_CALLBACKS = False
 

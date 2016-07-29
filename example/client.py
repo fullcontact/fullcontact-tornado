@@ -54,7 +54,7 @@ class CabApiClient(object):
         if _token is not None:
             _headers["Authorization"] = "Bearer %s" % _token
 
-        uri = "%s/v3/%s" % ("http://cabapi.elb.fullcontact.com", resource)
+        uri = "https://api.fullcontact.com/v3/%s" % resource
 
         if headers is not None:
             _headers.update(headers)

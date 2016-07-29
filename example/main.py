@@ -4,7 +4,7 @@
 A simple FullContact CAB API demo.
 
 To run this app, you must first register an application with FullContact:
-1) Go to https://alpha.fullcontact.com/apps and create an application.
+1) Go to https://beta.fullcontact.com/apps and create an application.
    Set the Redirect URI to point to your auth handler (or leave it empty).
 2) Copy the "Client ID" and "Client Secret" to a new file config.py:
       fullcontact_client_id = "..."
