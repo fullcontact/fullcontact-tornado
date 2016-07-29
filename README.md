@@ -1,10 +1,6 @@
-# FullContact Client for Python's Tornado Web Server
+# FullContact V3 API Client for Python's Tornado Web Server
 
-A library for building web applications in Python that integrate with FullContact APIs.
-
-Currently supported FullContact APIs:
-* [CAB API](https://github.com/fullcontact/cabapi/blob/master/doc/SCHEMA.md) (using [OAuth
-  authentication](https://github.com/fullcontact/OAuthService/blob/master/doc/auth_endpoint_spec.md))
+A library for building web applications in Python that integrate with [FullContact V3 API](https://api.fullcontact.com/v3/docs/).
 
 ## Installation
 
