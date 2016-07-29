@@ -11,7 +11,7 @@ install_requires = [
 ]
 
 setup(
-    name="fullcontact-api-tornado",
+    name="fullcontact-tornado",
     version=get_version('short'),
     author="Kaspars Dancis",
     author_email="kaspars@fullcontact.com",
