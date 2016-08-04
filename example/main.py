@@ -12,10 +12,13 @@ To run this app, you must first register an application with FullContact:
 3) Run this program and go to http://localhost:8080 in yourbrowser.
 """
 
+import sys
+sys.path.insert(0, "..")
+
 import logging
 
-import client as client
-import oauth2 as oauth2
+from fullcontact.tornado_client import FullContactMixin
+
 from tornado.escape import json_decode, json_encode
 from tornado.ioloop import IOLoop
 from tornado import gen
@@ -31,7 +34,7 @@ define("fullcontact_client_secret", type=str, group="application")
 define("cookie_secret", type=str, group="application", default="REPLACE_THIS", help="signing key for secure cookies")
 
 
-class BaseHandler(RequestHandler, oauth2.FullContactOAuth2Mixin, client.CabApiClient):
+class BaseHandler(RequestHandler, FullContactMixin):
 
     COOKIE_NAME = "fullcontact_demo"
 
@@ -79,7 +82,7 @@ class MainHandler(BaseHandler):
         payload = {}
         for _ in range(3):
 
-            res = yield self.contacts_scroll(payload)
+            res = yield self.fullcontact_request("contacts.scroll", payload)
             contacts = contacts + [c for c in res["contacts"] if is_visible(c)]
 
             if res.get("cursor"):
