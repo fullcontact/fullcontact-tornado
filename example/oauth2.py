@@ -4,7 +4,7 @@ from tornado.auth import OAuth2Mixin, _auth_return_future, AuthError, urllib_par
 from tornado import escape
 
 
-class Oauth2Client(OAuth2Mixin):
+class FullContactOAuth2Mixin(OAuth2Mixin):
 
     """FullContact authentication using OAuth2.
 

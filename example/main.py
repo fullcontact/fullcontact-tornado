@@ -31,7 +31,7 @@ define("fullcontact_client_secret", type=str, group="application")
 define("cookie_secret", type=str, group="application", default="REPLACE_THIS", help="signing key for secure cookies")
 
 
-class BaseHandler(RequestHandler, oauth2.Oauth2Client, client.CabApiClient):
+class BaseHandler(RequestHandler, oauth2.FullContactOAuth2Mixin, client.CabApiClient):
 
     COOKIE_NAME = "fullcontact_demo"
 
